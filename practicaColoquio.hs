@@ -46,7 +46,7 @@ listaVentasMesAnio (m,nio) = filter (\x -> (filFecha x (m,nio) )) ventas
 
 filFecha venta (m,nio) = (((==m).mes).fecha) venta && (((==nio).anio).fecha) venta
 
---aca tambien usamos primer orden en la funcion maximoSegun
+--aca tambien usamos primer orden en la funcion maximoSegun con recursion 
 
 maximoSegun funcionMaxima (x:xs) 
   | aplicar funcionMaxima (x:xs) == funcionMaxima x = x
@@ -76,3 +76,11 @@ ventasVendedor ven = ((==ven).vendedor)
 --1.4.3 
 
 huboVentas (m,anio) = ((not).(null).(filter (ventasMes (m,anio)))) ventas
+
+--Evaluacion diferida 
+-- crear una venta de tal manera que pasandole un objeto y la cantidad de ventas del mismo
+-- me retorne la venta con la lista de objetos creada ** agregarle una fecha y un vendedor 
+
+superVenta numero objeto = ((12,02,2006),"Daniel", take numero (listaInf objeto) )
+
+listaInf nombre = zipWith (\x y -> x ++ show y) (repeat nombre) [1..]
