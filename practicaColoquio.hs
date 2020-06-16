@@ -46,6 +46,7 @@ listaVentasMesAnio (m,nio) = filter (\x -> (filFecha x (m,nio) )) ventas
 
 filFecha venta (m,nio) = (((==m).mes).fecha) venta && (((==nio).anio).fecha) venta
 
+--aca tambien usamos primer orden en la funcion maximoSegun
 
 maximoSegun funcionMaxima (x:xs) 
   | aplicar funcionMaxima (x:xs) == funcionMaxima x = x

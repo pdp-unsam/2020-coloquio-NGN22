@@ -29,8 +29,6 @@ anitaDebil = Pollo "anitaDebil" 180 800 []
 pepeEntrenado :: Pollo
 pepeEntrenado = Pollo "pepeEntrenado" 183 800 ["karate","judo","aikido"]
 
-chickenNorris :: Pollo 
-chickenNorris = Pollo "chickenNorris" 9000000 100 ["judo","aikido","karate","box"]
 
 
 --1 Engordar a un pollo una cierta cantidad de gramos
@@ -47,7 +45,7 @@ ultimoAtributoEsVacio pollo = length (artesMarciales pollo) == 0
 
 --4 Cruzar un conjunto de pollos
 sumaPesos:: [Pollo]->Double
-sumaPesos lista = foldr ((+) . peso) 0 lista
+sumaPesos lista = foldl (\acum pollo -> acum + (peso pollo) ) 0 lista
 
 sumaApodos:: [Pollo]->String
 sumaApodos lista = foldr ((++) . apodo) "" lista
@@ -281,16 +279,14 @@ planetaDebilEntrenado planeta lista =  esDebil (aplicarEntrenamientos planeta li
 
 
 --1) chickenNorris
+chickenNorris = Pollo "pepe" 200 600 ((map (\ y -> "karate" ++ show y)  (iterate (1+) 1)))
+
+listaInfinita = zipWith (\x y -> x ++ show y) (repeat "karate") [1..]
 -- con arguniano se puede y le aumenta el peso 
---Pollo {apodo = "Jose", dias = 200, peso = 700.0, artesMarciales = ["judo","aikido"]}
--- con miyagui no tiene sentido entrenar porque ya sabe karate y todas las artes marciales que existe. a menos que primero pase por marcelito
---Pollo {apodo = "chickenNorris", dias = 9000000, peso = 100.0, artesMarciales = ["judo","aikido","karate"]}
--- marcelito al hacerle olvidar todas las artes marciales, ahora tiene sentido que vaya a entrenar con miyagui
---Pollo {apodo = "chickenNorris", dias = 9000000, peso = 100.0, artesMarciales = ["karate"]}
--- brujatapita lo hace engordar dándole un ratón
---Pollo {apodo = "chickenNorris", dias = 9000000, peso = 215.0, artesMarciales = ["judo","aikido","karate"]}
--- marioBros le enseña una habilidad nueva "saltar"
---Pollo {apodo = "chickenNorrissuper mario", dias = 9000000, peso = 100.0, artesMarciales = ["saltar","judo","aikido","karate"]}
+-- con miyagui no tiene sentido entrenar por que la lista es infinita 
+-- marcelito al hacerle olvidar todas las artes marciales, entonces borra la lista infinita 
+-- brujatapita lo hace engordar dándole un ratón, no hay problema 
+-- marioBros le enseña una habilidad nueva "saltar", no se podria ense;ar saltar, ya que la implementacion es por listas infinitas 
 
 
 --2) 
