@@ -32,6 +32,7 @@ cantVentasComponente nombre =  ((length).filter (==nombre)) ventasLista
 ventasLista = concatMap (listaComponentes) ventas
 
 --concatMap (listaComponentes) ventas
+--ventasLista = [ listaComponentes venta |venta<-ventas]
 
 --1.3
 
@@ -56,7 +57,7 @@ aplicar funcionMaxima (x:xs) = max (aplicar funcionMaxima [x]) (aplicar funcionM
 montoVentas venta = precioMaquina (listaComponentes venta) 
 
 --1.4
-
+-- ***********Primer Orden*********** --
 
 ventasCriterio criterio = (foldl (\acum t -> acum + (((precioMaquina).listaComponentes) t) ) 0) (filter criterio ventas)
 
