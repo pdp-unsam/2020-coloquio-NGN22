@@ -1,0 +1,30 @@
+ejemplos Aplicacion
+		
+			--pasando una lista de componentes me retorna el total de lo qeu costaria esa lista en particular
+		1.1 Aplicacion: precioMaquina ["Monitor GPRS 3000", "Motherboard ASUS 1500"]
+			--> 320 ($200 del monitor + $120 del motherboard)
+			
+			--pasando un componente me retorna el conteo de cuantas veces fue vendido 
+		 1.2 cantVentasComponente "Monitor ASC 543"
+			--> 2
+			
+			--retorna el vendedor del (mes,anio) pasado por parametro 
+		 1.3 vendedorDelMes (2,2006)
+			--> "Martin" (vendio por $670, una máquina de $320 y otra de $350)
+			
+			Retorna segun un criterio el total (monto$) de las ventas 
+		 1.4 Main> ventasCriterio (esDeLaFecha (1, 2, 2006))
+				--> 600 (una máquina de $320 y otra de $280)
+		
+		-
+		1.4.1 -- obtener las ventas de un mes
+				ventasCriterio (ventasMes (3,2006)) -->320.0
+		1.4.2 	ventasCriterio (ventasVendedor "Diego") --> 900
+		
+		1.4.3
+			huboVentas (2,2006) -->True 
+			huboVentas (9,2006) -->False
+		
+		1.5 
+			superVenta 3 "gabinete" --> ((12,2,2006),"Daniel",["gabinete1","gabinete2","gabinete3"]) 
+	

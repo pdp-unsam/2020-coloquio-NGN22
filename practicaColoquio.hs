@@ -23,6 +23,7 @@ ventas = [((1,2,2006), "Martin", ["Monitor GPRS 3000", "Motherboard ASUS 1500"])
 precioMaquina::Foldable t => t String -> Double
 precioMaquina listaComponentes = foldl (\acum t -> acum + (encontrarPrecio t) ) 0 listaComponentes
 
+encontrarPrecio::String->Double
 encontrarPrecio componente = snd (find ((== componente).nombreComponente) precios)
 
 ---1.2
@@ -81,6 +82,6 @@ huboVentas (m,anio) = ((not).(null).(filter (ventasMes (m,anio)))) ventas
 -- crear una venta de tal manera que pasandole un objeto y la cantidad de ventas del mismo
 -- me retorne la venta con la lista de objetos creada ** agregarle una fecha y un vendedor 
 
-superVenta numero objeto = ((12,02,2006),"Daniel", take numero (listaInf objeto) )
+superVenta numero nombre = ((12,02,2006),"Daniel", take numero (listaInf nombre) )
 
 listaInf nombre = zipWith (\x y -> x ++ show y) (repeat nombre) [1..]
