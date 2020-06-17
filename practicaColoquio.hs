@@ -61,21 +61,23 @@ montoVentas venta = precioMaquina (listaComponentes venta)
 --1.4
 -- ***********Primer Orden*********** --
 
+--ventasCriterio::(((Integer, Integer, Integer), [Char],[[Char]])-> Bool)-> Double
 ventasCriterio criterio = (foldl (\acum t -> acum + (((precioMaquina).listaComponentes) t) ) 0) (filter criterio ventas)
 
 -- criterioFecha::criterio
+esDeLaFecha::Eq a => a -> (a, t1, t) -> Bool
 esDeLaFecha fecha (fechaVenta,_,_) = fecha == fechaVenta
 
 --1.4.1
-
+ventasMes::Eq a1 => (a1, t6) -> ((t2, a1, t3), t4, t5) -> Bool
 ventasMes (m,anio) = (((==m).mes).fecha) 
 
 --1.4.2
-
+ventasVendedor::Eq a => a -> (t1, a, t) -> Bool
 ventasVendedor ven = ((==ven).vendedor)
 
---1.4.3 
-
+--1.4.3 --*ese mes sin importar el anio
+huboVentas::(Int,Int) -> Bool
 huboVentas (m,anio) = ((not).(null).(filter (ventasMes (m,anio)))) ventas
 
 --Evaluacion diferida 
