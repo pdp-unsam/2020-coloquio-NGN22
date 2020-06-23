@@ -62,7 +62,13 @@ montoVentas venta = precioMaquina (listaComponentes venta)
 -- ***********Primer Orden*********** --
 
 --ventasCriterio::(((Integer, Integer, Integer), [Char],[[Char]])-> Bool)-> Double
-ventasCriterio criterio = (foldl (\acum t -> acum + (((precioMaquina).listaComponentes) t) ) 0) (filter criterio ventas)
+ventasCriterio criterio ventas = (foldl (\acum t -> acum + (((precioMaquina).listaComponentes) t) ) 0) (filter criterio ventas)
+
+ventasCriterio criterio = sum ( map (\t -> (((precioMaquina).listaComponentes) t) ) (filter criterio ventas) )
+
+ventasCriterio criterio = sum ( map ( (precioMaquina).listaComponentes) (filter criterio ventas) )
+
+ventasCriterio criterio = sum.map (precioMaquina.listaComponentes)  .filter criterio 
 
 -- criterioFecha::criterio
 esDeLaFecha::Eq a => a -> (a, t1, t) -> Bool
