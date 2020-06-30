@@ -70,6 +70,7 @@ ventasCriterio criterio = sum ( map ( (precioMaquina).listaComponentes) (filter 
 
 ventasCriterio criterio = sum.map (precioMaquina.listaComponentes)  .filter criterio 
 
+
 -- criterioFecha::criterio
 esDeLaFecha::Eq a => a -> (a, t1, t) -> Bool
 esDeLaFecha fecha (fechaVenta,_,_) = fecha == fechaVenta

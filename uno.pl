@@ -162,4 +162,33 @@ ciudadesConVisitaDeCamionNoInv(Ciudad,Patente):-
     forall( viajes(_,Ciudad,_,Patente),camionConCajaGrande(Patente)).
 
 
+sinVisitasPatente(Patente):-
+    not(comun(Patente,_)),
+    not(acoplado(Patente,_,_) ).
+    
+
+
+soloRecibeSemiremolques(Ciudad):-
+    viajes(_,Ciudad,_,_),   
+forall( viajes(_,Ciudad,_,Patente), semiremolque(Patente,_,_,_) ).
+
+
+%forAll 
+
+
+% costo(gaseosa,50).
+% costo(soda,100). 
+% costo(galletita,200).
+% costo(alfajor,200).
+
+
+% recargo(Cliente,Producto,Recargo):-
+%     es
+
+% calcularPrecio(Cliente,Producto,PrecioVenta):- 
+%     costo(Producto,Costo), 
+%     recargo(Cliente,Producto,Recargo),
+%      PrecioVenta is (Costo*Recargo)/100. 
+
+
 

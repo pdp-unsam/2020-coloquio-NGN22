@@ -23,12 +23,14 @@ descuento(unas).
 tomoTratamiento(cristina,corporal,mayo).
 tomoTratamiento(cristina,unas,mayo).
 tomoTratamiento(guadalupe,peluqueria,abril).
+tomoTratamiento(guadalupe,peluqueria,mayo).
 tomoTratamiento(guadalupe,permanente,febrero).
 tomoTratamiento(lorena,maquillaje,junio).
 tomoTratamiento(esperanza,permanente,julio).
 tomoTratamiento(tobias,unas,mayo).
 
 %todos los clientes de mayo
+%Solo esperanza no fue en junio
 clientesMayo(Cliente):-
     tomoTratamiento(Cliente,_,mayo).
 
@@ -50,11 +52,32 @@ soloTratamientosConDescuento(Cliente):-
     tomoTratamiento(Cliente,_,_),
     forall( tomoTratamiento(Cliente,Tratamiento,_), descuento(Tratamiento)).
 
+%quiero saber la cantidad e veces que cada cliente tomo un tratamiento de peluqueria
+cantidadVecesQueTomaronPeLuqueria(Cliente,Cantidad):-
+    cliente(Cliente,_),
+    findall(peluqueria,tomoTratamiento(Cliente,peluqueria,_), Numero ),
+    length(Numero, Cantidad).
+
+
+%clietes que no recibieron tratamiento 
 clientesSinTratamientoConDescuento(Cliente):-
     tomoTratamiento(Cliente,_,_),
     not(conDescuento(Cliente)).
 
 
+% clientesSinTratamientoConDescuento(Cliente).
+    % Cliente = guadalupe ;
+    % Cliente = guadalupe ;
+    % Cliente = lorena ;
+    % Cliente = esperanza ;
 
 
+% soloTratamientosConDescuento(Cliente).
+    %Cliente = tobias.
 
+% conDescuento(Cliente).
+    % Cliente = cristina ;
+    % Cliente = tobias.
+
+% tratamientoMasCaro(Tratamiento).
+%   Tratamiento = peluqueria ;    
